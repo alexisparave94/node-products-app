@@ -5,14 +5,12 @@ const router = Router()
 
 router.get('/', productController.getAllProducts)
 
-router.get('/:id', productController.getProduct)
+router.get('/:productId', productController.getProduct)
 
 router.post('/', productController.createProduct)
 
-router.put('/:id', productController.updateProduct)
+router.put('/:productId', productController.updateProduct)
 
-router.delete('/:id', (req, res) => {
-  res.send('Delete Product')
-})
+router.delete('/:productId', productController.deleteProduct)
 
 export default router

@@ -6,7 +6,7 @@ export const getAllProducts = async (req , res) => {
 }
 
 export const getProduct = async (req , res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.productId);
 
   if (!product) return res.status(404).json({message: 'Product not found'})
 
@@ -23,13 +23,21 @@ export const createProduct = async (req , res) => {
 }
 
 export const updateProduct = async (req, res) => {
-  const { id } = req.params
+  const { productId } = req.params
   const { name, description, price } = req.body
-  const product = await Product.findByIdAndUpdate(id, { name, description, price })
+  const product = await Product.findByIdAndUpdate(productId, { name, description, price })
 
   if (!product) return res.status(404).json({ message: 'Product not found' })
 
-  const updatedProduct = await Product.findById(id)
+  const updatedProduct = await Product.findById(productId)
 
   res.json(updatedProduct)
+}
+
+export const deleteProduct = async (req, res) => {
+  const product = await Product.findByIdAndDelete(req.params.productId)
+
+  if (!product) return res.status(404).json({ message: 'Product not found' })
+
+  res.sendStatus(204)
 }
