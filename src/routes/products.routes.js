@@ -5,9 +5,7 @@ const router = Router()
 
 router.get('/', productController.getAllProducts)
 
-router.get('/:id', (req, res) => {
-  res.send('Product')
-})
+router.get('/:id', productController.getProduct)
 
 router.post('/', productController.createProduct)
 
