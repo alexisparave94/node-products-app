@@ -22,3 +22,19 @@ export const signup = async (req, res) => {
 
   res.status(201).json({ token })
 }
+
+export const signin = async (req, res) => {
+  const { email, password } = req.body
+
+  const user = await User.findOne({ email })
+  if (!user) return res.status(401).json({message: 'Invalid credentials'})
+
+  const match = await User.comparePassword(password, user.password)
+  if (!match) return res.status(401).json({message: 'Invalid credentials here'})
+
+  const token = jwt.sign({ id: user._id }, secret.SECRET,{
+    expiresIn: 120 // 2 minutes
+  })
+
+  res.json({token})
+}
