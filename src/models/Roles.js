@@ -3,7 +3,7 @@ import { Schema, model } from 'mongoose'
 const roleSchema = new Schema({
   name: String
 }, {
-  versionKey: true
+  versionKey: false
 })
 
 export default model('Role', roleSchema)
