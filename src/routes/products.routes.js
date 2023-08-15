@@ -9,9 +9,7 @@ router.get('/:id', (req, res) => {
   res.send('Product')
 })
 
-router.post('/', (req, res) => {
-  res.send('Create Product')
-})
+router.post('/', productController.createProduct)
 
 router.put('/:id', (req, res) => {
   res.send('Update Product')
