@@ -1,10 +1,9 @@
 import { Router } from 'express'
+import * as productController from '../controllers/productController.js'
 
 const router = Router()
 
-router.get('/', (req, res) => {
-  res.send('Products')
-})
+router.get('/', productController.getAllProducts)
 
 router.get('/:id', (req, res) => {
   res.send('Product')
