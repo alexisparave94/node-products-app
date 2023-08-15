@@ -6,7 +6,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/products', productsRoutes)
+app.use('/api/v1/products', productsRoutes)
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('Server listening on port', process.env.PORT || 3000)
