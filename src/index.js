@@ -1,4 +1,5 @@
 import express from 'express'
+import './config/db.js'
 import productsRoutes from './routes/products.routes.js'
 
 const app = express()
