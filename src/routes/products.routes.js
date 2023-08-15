@@ -9,9 +9,7 @@ router.get('/:id', productController.getProduct)
 
 router.post('/', productController.createProduct)
 
-router.put('/:id', (req, res) => {
-  res.send('Update Product')
-})
+router.put('/:id', productController.updateProduct)
 
 router.delete('/:id', (req, res) => {
   res.send('Delete Product')

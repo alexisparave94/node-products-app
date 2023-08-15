@@ -21,3 +21,15 @@ export const createProduct = async (req , res) => {
 
   res.status(201).json(createdProduct)
 }
+
+export const updateProduct = async (req, res) => {
+  const { id } = req.params
+  const { name, description, price } = req.body
+  const product = await Product.findByIdAndUpdate(id, { name, description, price })
+
+  if (!product) return res.status(404).json({ message: 'Product not found' })
+
+  const updatedProduct = await Product.findById(id)
+
+  res.json(updatedProduct)
+}
