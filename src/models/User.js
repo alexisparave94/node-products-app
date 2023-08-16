@@ -1,6 +1,8 @@
 import {  Schema, model } from 'mongoose'
 import bcrypt from 'bcrypt'
 
+export const ROLES = ['admin', 'moderator', 'user']
+
 const userSchema = new Schema({
   username: { type: String, require: true, unique: true },
   email: { type: String, require: true, unique: true },
