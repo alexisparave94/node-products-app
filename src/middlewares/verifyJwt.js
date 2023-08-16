@@ -13,7 +13,7 @@ export default async (req, res, next) => {
   
     const user = await User.findById(req.userId)
   
-    if (!user) return res.status(401).json({message: 'Unaothorized'})
+    if (!user) return res.status(401).json({message: 'Unauthorized'})
   
     next()
   } catch (error) {
