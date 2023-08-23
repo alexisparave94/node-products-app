@@ -58,6 +58,55 @@ router.get('/:productId', productController.getProduct)
 
 router.post('/', [verifyJwt, isModerator], productController.createProduct)
 
+/**
+ * @openapi
+ * /api/v1/products/{productId}:
+ *   put:
+ *     tags:
+ *       - Products
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: productId
+ *         in: path
+ *         description: ID of product to return
+ *         require: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Product 1
+ *               description:
+ *                 type: string
+ *                 example: This is a description
+ *               price:
+ *                 type: integer
+ *                 example: 200
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Product"
+ *       404:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Product not found
+ */
+
 router.put('/:productId',[verifyJwt, isModerator], productController.updateProduct)
 
 router.delete('/:productId', [verifyJwt, isAdmin], productController.deleteProduct)
