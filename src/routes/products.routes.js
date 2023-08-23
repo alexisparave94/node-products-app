@@ -23,6 +23,37 @@ const router = Router()
  */
 router.get('/', productController.getAllProducts)
 
+/**
+ * @openapi
+ * /api/v1/products/{productId}:
+ *   get:
+ *     tags:
+ *       - Products
+ *     parameters:
+ *       - name: productId
+ *         in: path
+ *         description: ID of product to return
+ *         require: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Product"
+ *       404:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Product not found
+ */
 router.get('/:productId', productController.getProduct)
 
 router.post('/', [verifyJwt, isModerator], productController.createProduct)
