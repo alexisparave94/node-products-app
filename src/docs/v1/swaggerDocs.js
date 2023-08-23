@@ -5,8 +5,20 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: { title: "Products API", version: "0.1.0" },
+    components:{
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    }
   },
-  apis: ["./src/routes/products.routes.js", "./src/models/Product.js"],
+  apis: [
+    "./src/routes/products.routes.js",
+    "./src/models/Product.js"
+  ],
 };
 
 const swaggerSpec = swaggerJSDoc(options);
