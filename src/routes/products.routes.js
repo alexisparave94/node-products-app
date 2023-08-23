@@ -143,6 +143,37 @@ router.post('/', [verifyJwt, isModerator], productController.createProduct)
 
 router.put('/:productId',[verifyJwt, isModerator], productController.updateProduct)
 
+/** 
+ * @openapi
+ * /api/v1/products/{productId}:
+ *   delete:
+ *     tags:
+ *       - Products
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - name: productId
+ *         in: path
+ *         description: Id of product to delete
+ *         require: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       204:
+ *         description: No Content
+ *       404:
+ *         description: Product not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Product not found
+*/
+
+
 router.delete('/:productId', [verifyJwt, isAdmin], productController.deleteProduct)
 
 export default router
