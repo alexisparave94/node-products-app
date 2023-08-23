@@ -19,26 +19,7 @@ const router = Router()
  *             schema:
  *               type: array
  *               items:
- *                 type: object
- *                 properties:
- *                   _id:
- *                     type: string
- *                     example: 61dbae02-c147-4e28-863c-db7bd402b2d6
- *                   name:
- *                     type: string
- *                     example: Product 1
- *                   description:
- *                     type: string
- *                     example: This is a description
- *                   price:
- *                     type: integer
- *                     example: 200
- *                   created_at:
- *                     type: string
- *                     example: 2023-08-15T03:18:46.721Z
- *                   updated_at:
- *                     type: string
- *                     example: 2023-08-15T03:18:46.721Z
+ *                 $ref: "#/components/schemas/Product"
  */
 router.get('/', productController.getAllProducts)
 
