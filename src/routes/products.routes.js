@@ -21,6 +21,7 @@ const router = Router()
  *               items:
  *                 $ref: "#/components/schemas/Product"
  */
+
 router.get('/', productController.getAllProducts)
 
 /**
@@ -54,7 +55,40 @@ router.get('/', productController.getAllProducts)
  *                   type: string
  *                   example: Product not found
  */
+
 router.get('/:productId', productController.getProduct)
+
+/**
+ * @openapi
+ * /api/v1/products:
+ *   post:
+ *     tags:
+ *       - Products
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 example: Product 10
+ *               description:
+ *                 type: string
+ *                 example: This is a description
+ *               price:
+ *                 type: integer
+ *                 example: 400
+ *     responses:
+ *       201:
+ *         description: Created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: "#/components/schemas/Product"
+ */
 
 router.post('/', [verifyJwt, isModerator], productController.createProduct)
 
