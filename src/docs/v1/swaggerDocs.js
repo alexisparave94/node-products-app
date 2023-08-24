@@ -1,5 +1,8 @@
 import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import path from 'path'
+
+const cwd = process.cwd()
 
 const options = {
   definition: {
@@ -16,10 +19,11 @@ const options = {
     }
   },
   apis: [
-    "./src/routes/products.routes.js",
-    "./src/models/Product.js"
+    path.join(cwd, 'src/routes/products.routes.js'),
+    path.join(cwd, 'src/models/Product.js')
   ],
 };
+
 
 const swaggerSpec = swaggerJSDoc(options);
 
