@@ -1,38 +1,18 @@
-import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUi from 'swagger-ui-express'
+import { config } from 'dotenv'
+config()
+import YAML from 'yaml'
+import fs from 'fs'
 import path from 'path'
 
 const cwd = process.cwd()
+const filePath = process.env.RENDER_ENV == 'prod' ? 'docs/v1/swaggerDocsV1.yaml' : 'src/docs/v1/swaggerDocsV1.yaml'
 
-const options = {
-  definition: {
-    openapi: "3.0.0",
-    info: { title: "Products API", version: "0.1.0" },
-    components:{
-      securitySchemes: {
-        bearerAuth: {
-          type: 'http',
-          scheme: 'bearer',
-          bearerFormat: 'JWT'
-        }
-      }
-    }
-  },
-  apis: [
-    path.join(cwd, 'src/routes/products.routes.js'),
-    path.join(cwd, 'src/models/Product.js')
-  ],
-};
-
-
-const swaggerSpec = swaggerJSDoc(options);
+const file  = fs.readFileSync(path.join(cwd, filePath), 'utf8')
+const swaggerDoc = YAML.parse(file)
 
 const swaggerDocs = (app, port) => {
-  app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
-  app.get("/api/v1/docs.json", (req, res) => {
-    res.setHeader("Content-Type", "application/json");
-    res.send(swaggerSpec);
-  });
+  app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDoc));
   console.log(
     `Version 1 Docs are available on http://localhost:${port}/api/v1/docs`
   );

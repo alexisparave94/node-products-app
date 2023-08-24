@@ -1,0 +1,178 @@
+openapi: 3.0.0
+info:
+  title: Products API 0.1.0
+  description: This is a description
+  version: 0.1.0
+tags:
+  - name: Auth
+    description: Access to Products API
+  - name: User
+    description: Operations about users
+  - name: Products
+    description: Operations about products
+paths:
+  /api/v1/products:
+    get:
+      tags:
+        - Products
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+    post:
+      tags:
+        - Products
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Product 10
+                description:
+                  type: string
+                  example: This is a description
+                price:
+                  type: integer
+                  example: 400
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"  
+  /api/v1/products/{productId}:
+    get:
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          description: ID of product to return
+          require: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        404:
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Product not found
+    put:
+      tags:
+        - Products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: productId
+          in: path
+          description: ID of product to return
+          require: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Product 1
+                description:
+                  type: string
+                  example: This is a description
+                price:
+                  type: integer
+                  example: 200
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+        404:
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Product not found
+    delete:
+      tags:
+        - Products
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: productId
+          in: path
+          description: Id of product to delete
+          require: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: No Content
+        404:
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Product not found
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id: 
+          type: string
+          example: 61dbae02-c147-4e28-863c-db7bd402b2d6
+        name: 
+          type: string
+          example: Tommy V  
+        description:
+          type: string
+          example: This is a description
+        price:
+          type: integer
+          example: 200
+        created_at:
+          type: string
+          example: 2023-08-15T03:18:46.721Z
+        updated_at:
+          type: string
+          example: 2023-08-15T03:18:46.721Z
+  securitySchemes:
+    bearerAuth:
+      type: 'http'
+      scheme: 'bearer'
+      bearerFormat: 'JWT'
