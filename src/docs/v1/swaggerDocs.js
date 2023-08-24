@@ -7,7 +7,8 @@ import YAML from 'yaml'
 const cwd = process.cwd()
 
 // const file  = fs.readFileSync(path.join(cwd, 'src/docs/v1/swaggerDocsV1.yaml'), 'utf8')
-const file  = fs.readFileSync('./swaggerDocsV1.yaml', 'utf8')
+// const file  = fs.readFileSync('./swaggerDocsV1.yaml', 'utf8')
+const file  = fs.readFileSync(path.join(cwd, 'docs/v1/swaggerDocsV1.yaml'), 'utf8')
 const swaggerDocument = YAML.parse(file)
 
 // const options = {
