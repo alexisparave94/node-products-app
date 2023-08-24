@@ -6,9 +6,10 @@ import fs from 'fs'
 import path from 'path'
 
 const cwd = process.cwd()
-const filePath = process.env.RENDER_ENV == 'prod' ? 'docs/v1/swaggerDocsV1.yaml' : 'src/docs/v1/swaggerDocsV1.yaml'
+// const filePath = process.env.RENDER_ENV == 'prod' ? 'docs/v1/swaggerDocsV1.yaml' : 'src/docs/v1/swaggerDocsV1.yaml'
+// console.log(filePath)
 
-const file  = fs.readFileSync(path.join(cwd, filePath), 'utf8')
+const file  = fs.readFileSync(path.join(cwd, 'docs/v1/swaggerDocsV1.yaml'), 'utf8')
 const swaggerDoc = YAML.parse(file)
 
 const swaggerDocs = (app, port) => {
