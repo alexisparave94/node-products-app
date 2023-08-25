@@ -6,7 +6,7 @@ const router = Router()
 
 /**
  * @openapi
- * /api/v1/signup:
+ * /api/v1/auth/signup:
  *   post:
  *     tags: 
  *       - Auth
@@ -42,7 +42,7 @@ router.post('/signup', checkDucplicateUsernameAndEmail, authController.signup)
 
 /**
  * @openapi
- * /api/v1/signin:
+ * /api/v1/auth/signin:
  *   post:
  *     tags: 
  *       - Auth
