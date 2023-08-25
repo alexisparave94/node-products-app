@@ -29,7 +29,6 @@ const swaggerDocs = (app, port) => {
     res.setHeader("Content-Type", "application/json");
     res.send(swaggerSpec);
   });
-  console.log(options)
   console.log(
     `Version 1 Docs are available on http://localhost:${port}/api/v1/docs`
   );
