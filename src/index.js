@@ -13,6 +13,7 @@ createRoles()
 
 app.use(express.json())
 
+app.get('/', (req, res) => res.send('<h1>Welcome Products API</h1>'))
 app.use('/api/v1/products', productsRoutes)
 app.use('/api/v1/auth', authRoutes)
 app.use('/api/v1/users', usersRoutes)
