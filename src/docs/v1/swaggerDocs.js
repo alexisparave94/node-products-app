@@ -3,6 +3,7 @@ import swaggerUi from 'swagger-ui-express'
 import path from 'path'
 import fs from 'fs'
 import YAML from 'yaml'
+import { env } from 'process'
 
 const cwd = process.cwd()
 
@@ -10,6 +11,8 @@ const cwd = process.cwd()
 // const file  = fs.readFileSync('./swaggerDocsV1.yaml', 'utf8')
 // const file  = fs.readFileSync(path.join(cwd, 'docs/v1/swaggerDocsV1.yaml'), 'utf8')
 // const swaggerDocument = YAML.parse(file)
+
+
 
 const options = {
   definition: {
@@ -30,6 +33,9 @@ const options = {
     path.join(cwd, 'models/Product.js')
   ],
 };
+
+console.log(env)
+console.log(cwd)
 
 const swaggerSpec = swaggerJSDoc(options);
 
