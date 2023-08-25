@@ -30,7 +30,7 @@ export const signin = async (req, res) => {
   if (!user) return res.status(401).json({message: 'Invalid credentials'})
 
   const match = await User.comparePassword(password, user.password)
-  if (!match) return res.status(401).json({message: 'Invalid credentials here'})
+  if (!match) return res.status(401).json({message: 'Invalid credentials'})
 
   const token = jwt.sign({ id: user._id }, secret.SECRET,{
     expiresIn: 120 // 2 minutes

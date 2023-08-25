@@ -83,7 +83,7 @@ router.get('/:productId', productController.getProduct)
  *                 example: 400
  *     responses:
  *       201:
- *         description: Created
+ *         description: Product created
  *         content:
  *           application/json:
  *             schema:
