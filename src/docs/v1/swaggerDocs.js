@@ -29,8 +29,8 @@ const options = {
     }
   },
   apis: [
-    path.join(cwd, 'routes/products.routes.js'),
-    path.join(cwd, 'models/Product.js')
+    './src/routes/products.routes.js',
+    './src/models/Product.js'
   ],
 };
 
